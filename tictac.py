@@ -25,7 +25,7 @@ class tictac():
             return self.marker
 
     def game_board(self):
-     os.system('clear' or 'cls')
+     
      print("     0   1   2")
      print("")
      count = 0
