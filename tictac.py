@@ -2,7 +2,7 @@
 import os
 
 class tictac():
-    def __init__(self):
+ def __init__(self):
      self.player = "Player 1"
      self.marker = ''
      self.status="Playing ......"
@@ -10,7 +10,7 @@ class tictac():
      self.game = [[0,0,0],
 		   [0,0,0],
 		   [0,0,0],]
-    def play(self):
+ def play(self):
         player1 = 'X'
         player2 = 'Y'
 
@@ -24,8 +24,8 @@ class tictac():
             self.player="Player 1"
             return self.marker
 
-    def game_board(self):
-     
+ def game_board(self):
+     os.system('clear' or 'cls')
      print("     0   1   2")
      print("")
      count = 0
@@ -36,8 +36,8 @@ class tictac():
      print(self.status)
      print("Player :" + self.player)
 
-    def checkwin(self):
-
+ def checkwin(self):
+      
      if((self.game[0][0] == self.game[0][1] == self.game[0][2] == self.marker) or
         (self.game[0][0] == self.game[1][0] == self.game[2][0] == self.marker) or
         (self.game[0][0] == self.game[1][1] == self.game[2][2] == self.marker) or
@@ -46,43 +46,52 @@ class tictac():
         (self.game[2][0] == self.game[2][1] == self.game[2][2] == self.marker) or
         (self.game[0][2] == self.game[1][2] == self.game[2][2] == self.marker) or
         (self.game[0][2] == self.game[1][1] == self.game[2][0] == self.marker)) :
-
+         
+           
            self.detect="Win detected"
+           
+           self.status="Stopped ......"
+           self.player=""
            if self.marker == 'X':
             print("Win detected Player 1 wins")
            elif self.marker == 'Y':
             print("Win detected Player 2 wins")
+            
 
-
-    def playing(self):
-     os.system('clear' or 'cls')
+ def playing(self):
+     
      while self.detect=="Win not detected":
         self.game_board()
-        self.checkwin()
-        if self.detect=="Win detected":
-         self.status="Stopped ......"
-         self.player=""
+       
+        if self.detect=="Win detected":  
+         
          break
+         
         try:
          row = int(input("Enter row where you want to input :"))
 
          column = int(input("Enter column where you want to input :"))
          a = int(row)
          b = int(column)
-         os.system('clear' or 'cls')
+         
          if (0<= a <= 2) and (0<= b <= 2):
             if self.game[a][b] ==0:
                self.game[a][b]=self.play()
+               self.checkwin()
+               if  not [indexes for indexes in self.game if 0 in indexes] and self.detect=="Win not detected":      #This is to verify that theres no index that contains zero
+                   self.status="Stopped ......"
+                   self.player=""
+                   print("Draw")                                                                                                                                                #If it is true that all indexes are placed with markers and no win is detected, this should output draw
+                   break
             else:
                 print("There is a mark existing at that position")
          else:
              print("Error :make sure digit entered is between zero and two")
-             #continue
         except (ValueError):
-            os.system('clear' or 'cls')
             print("Error :make sure you entered a digit")
+     
      self.game_board()
-     self.checkwin()
-
+     
+        
 obj=tictac()
 obj.playing()
