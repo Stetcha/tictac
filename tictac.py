@@ -78,11 +78,10 @@ class tictac():
             if self.game[a][b] ==0:
                self.game[a][b]=self.play()
                self.checkwin()
-               if  not [indexes for indexes in self.game if 0 in indexes] and self.detect=="Win not detected":      #This is to verify that theres no index that contains zero
+               if  not [indexes for indexes in self.game if 0 in indexes] and self.detect=="Win not detected":     
                    self.status="Stopped ......"
                    self.player=""
-                   print("Draw")                                                                                                                                                #If it is true that all indexes are placed with markers and no win is detected, this should output draw
-                   break
+                   print("Draw")                                                                                    
             else:
                 print("There is a mark existing at that position")
          else:
